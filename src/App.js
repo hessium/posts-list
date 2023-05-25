@@ -1,34 +1,48 @@
 import './App.css';
 import axios from 'axios';
 import {useState, useEffect} from "react";
-import PostItem from "./components/posts/PostItem";
+import PostList from "./components/posts/PostList";
 
 function App() {
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
+    const [users, setUSers] = useState([]);
 
     useEffect(() => {
-        fetchPosts()
-        console.log("useEffect")
+        fetchPosts();
     }, [])
 
   async function fetchPosts() {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+        const postsRes = await axios.get('https://jsonplaceholder.typicode.com/posts', {
         })
-        setPosts(response.data)
+        const usersRes = await axios.get('https://jsonplaceholder.typicode.com/users', {
+        })
+
+      const postsData = postsRes.data;
+      const usersData = usersRes.data;
+      const result = []
+      for(let i = 0; i < postsData.length; i++) {
+            //console.log(postsData[i].body)
+          let postId = postsData[i].userId;
+          for(let j = 0; j < usersData.length; j++) {
+              //console.log(usersData[j].name)
+              let userId = usersData[j].id
+              if(userId === postId) {
+                  postsData[i].name = usersData[j].name;
+                  postsData[i].username = usersData[j].username;
+              }
+          }
+      }
+      console.log(postsData)
+      setPosts(postsData)
+      setUSers(usersData)
    }
+
 
   return (
     <div className="App">
       <header className="App-header">
-
       </header>
-        <div className='container'>
-           <div className="row">
-               {posts.map((post) =>
-                   <PostItem post={post} />
-               )}
-           </div>
-        </div>
+        <PostList posts={posts} users={users}/>
     </div>
   );
 }
