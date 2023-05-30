@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Accordion from 'react-bootstrap/Accordion';
 
-const  PostItem = ({post}) =>  {
+const  PostItem = ({post, }) =>  {
+    const [comments, setPosts] = useState([]);
+
+
     return (
           <div key={post.id} className="col-md-8">
               <div className="media g-mb-30 media-comment">
@@ -15,9 +19,22 @@ const  PostItem = ({post}) =>  {
                               </a>
                           </div>
                           <p>{post.body}</p>
+                          <Accordion >
+                              <Accordion.Item eventKey="0">
+                                  <Accordion.Header>Comments</Accordion.Header>
+                              {
+                                  (post.comments).map((text) =>
+                                      <Accordion.Body key={'comment' + text.com}>
+                                          <h4>{text.email}</h4>
+                                         <p >{text.com}</p>
+                                      </Accordion.Body>
+                                  )
+                              }
+                              </Accordion.Item>
+                          </Accordion>
                       </div>
                   <div>
-                      <p></p>
+
                   </div>
               </div>
           </div>
