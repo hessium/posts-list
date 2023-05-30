@@ -1,16 +1,21 @@
 import './App.css';
 import axios from 'axios';
-import {useState, useEffect} from "react";
+import {useState, useEffect, useMemo} from "react";
 import PostList from "./components/posts/PostList";
+import MySelect from "./components/Ui/select/MySelect";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function App() {
     const [posts, setPosts] = useState([]);
+    const [selectedSort, setSelectedSort] = useState('')
+    const [searchQuery, setSearchQuery] = useState('')
 
     useEffect(() => {
         fetchPosts();
     }, [])
 
-  async function fetchPosts() {
+    async function fetchPosts() {
         const postsRes = await axios.get('https://jsonplaceholder.typicode.com/posts', {
         })
         const usersRes = await axios.get('https://jsonplaceholder.typicode.com/users', {
@@ -50,26 +55,62 @@ function App() {
           }
       }
       setPosts(postsData)
-      console.log(postsData)
   }
+
+    const sortedPosts = useMemo(() => {
+        console.log('отработала')
+        if(selectedSort) {
+            return [...posts].sort((a, b) =>
+                a[selectedSort].localeCompare(b[selectedSort]))
+        }
+        return posts;
+    }, [selectedSort, posts])
+
+    const sortedAndSearchQuery = useMemo(() => {
+        return sortedPosts.filter(post =>
+            post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    }, [searchQuery, sortedPosts])
+
+    const sortPosts = (sort) => {
+        setSelectedSort(sort)
+    }
 
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
-        <div>
-            <select>
-                <option value="">
-                    По названию
-                </option>
-            </select>
+        <div className='container'>
+            <header className="App-header">
+                <h1>Список постов</h1>
+            </header>
+            <InputGroup className="mb-3">
+                <InputGroup.Text
+                    >
+                    Поиск
+                </InputGroup.Text>
+                <Form.Control
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                    id="inputGroup-sizing-default"
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"
+                />
+            </InputGroup>
+            <MySelect
+                value={selectedSort}
+                onChange={sortPosts}
+                defaultValue="Сортировка"
+                options={[
+                    {value: 'title', name: 'По названию'},
+                    {value: 'body', name: 'По тексту'},
+                    {value: 'name', name: 'По имени'},
+                ]}
+            />
         </div>
         {
-            posts.length
+            sortedAndSearchQuery.length
                 ?
-                    <PostList posts={posts}/>
+                    <PostList posts={sortedAndSearchQuery}/>
                 :
-                <h2>Посты не найдены</h2>
+                <h2 className='title'>Посты не найдены</h2>
         }
     </div>
   );

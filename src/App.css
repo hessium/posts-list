@@ -1,3 +1,9 @@
+h1, h2 {
+    text-align: center;
+}
+.title {
+    margin-top: 2rem;
+}
 .media {
     display: -ms-flexbox;
     display: flex;

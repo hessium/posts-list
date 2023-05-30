@@ -1,7 +1,7 @@
 import React from 'react';
 import PostItem from "./PostItem";
 
-const  PostList = ({posts, users}) =>  {
+const  PostList = ({posts}) =>  {
     return (
         <div className='container'>
             <div className="row">
