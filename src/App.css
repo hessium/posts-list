@@ -1,8 +1,12 @@
+.App {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 h1, h2 {
     text-align: center;
-}
-.title {
-    margin-top: 2rem;
 }
 .media {
     display: -ms-flexbox;
