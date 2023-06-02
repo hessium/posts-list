@@ -21,12 +21,11 @@ const  PostItem = ({post }) =>  {
                               <Accordion.Item eventKey="0">
                                   <Accordion.Header>Comments</Accordion.Header>
                               {
-                                  (post.comments).map((text) =>
-                                      <Accordion.Body key={'comment' + text.com}>
-                                          <h4>{text.email}</h4>
-                                         <p >{text.com}</p>
+                                 /* post.map(() =>
+                                      <Accordion.Body key={}>
+                                      
                                       </Accordion.Body>
-                                  )
+                                  )*/
                               }
                               </Accordion.Item>
                           </Accordion>

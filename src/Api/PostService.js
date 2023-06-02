@@ -8,7 +8,7 @@ export default class PostService {
                     _page: page
                 }
             })
-            const usersRes = await axios.get('https://jsonplaceholder.typicode.com/users', {
+          /*  const usersRes = await axios.get('https://jsonplaceholder.typicode.com/users', {
             })
             const commentsRes = await  axios.get('https://jsonplaceholder.typicode.com/comments',{
             })
@@ -42,7 +42,8 @@ export default class PostService {
                         })
                     }
                 }
-            }
-            return postsData;
+            }*/
+            console.log(postsRes)
+            return postsRes;
     }
 }
