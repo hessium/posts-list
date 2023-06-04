@@ -26,7 +26,7 @@ const PostFilter = ({filter, setFilter}) => {
                 options={[
                     {value: 'title', name: 'По названию'},
                     {value: 'body', name: 'По тексту'},
-                    {value: 'name', name: 'По имени'},
+                   /* {value: 'name', name: 'По имени'},*/
                 ]}
             />
         </div>

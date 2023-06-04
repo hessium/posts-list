@@ -8,6 +8,17 @@
 h1, h2 {
     text-align: center;
 }
+.header {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 20px 0;
+}
+.header-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .media {
     display: -ms-flexbox;
     display: flex;

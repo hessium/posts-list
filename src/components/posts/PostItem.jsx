@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 
 const  PostItem = ({post }) =>  {
+
+
     return (
           <div key={post.id} className="col-md-12">
               <div className="media g-mb-30 media-comment">
@@ -19,14 +21,8 @@ const  PostItem = ({post }) =>  {
                           <p>{post.body}</p>
                           <Accordion >
                               <Accordion.Item eventKey="0">
-                                  <Accordion.Header>Comments</Accordion.Header>
-                              {
-                                 /* post.map(() =>
-                                      <Accordion.Body key={}>
-                                      
-                                      </Accordion.Body>
-                                  )*/
-                              }
+                                  <Accordion.Header >Comments</Accordion.Header>
+
                               </Accordion.Item>
                           </Accordion>
                       </div>

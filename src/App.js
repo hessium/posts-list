@@ -1,13 +1,14 @@
 import './App.css';
-import {useState, useEffect, useMemo} from "react";
+import {useState, useEffect} from "react";
 import PostList from "./components/posts/PostList";
 import PostFilter from "./components/PostFilter";
 import {usePosts} from "./hooks/usePosts";
 import PostService from "./Api/PostService";
 import Spinner from 'react-bootstrap/Spinner';
 import {useFetching} from "./hooks/useFetching";
-import {getPageCount, getPagesArray} from "./utils/pages";
+import {getPageCount} from "./utils/pages";
 import MyPagination from "./components/Ui/pagination/MyPagination";
+import MyBurger from "./components/Ui/MyBurger";
 
 function App() {
     const [posts, setPosts] = useState([]);
@@ -25,7 +26,6 @@ function App() {
         setTotalPages(getPageCount(totalCount, limit))
     })
 
-
     useEffect(() => {
         fetchPosts();
     }, [page])
@@ -36,7 +36,8 @@ function App() {
     return (
         <div className="App">
             <div className='container'>
-                <header className="App-header">
+                <header className="header">
+                    <MyBurger/>
                     <h1>Список постов</h1>
                 </header>
                 <PostFilter filter={filter} setFilter={setFilter}/>

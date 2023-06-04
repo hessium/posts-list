@@ -1,13 +1,26 @@
 import axios from "axios";
 
+    const url = axios.create({
+    baseURL: 'https://jsonplaceholder.typicode.com/',
+});
+
 export default class PostService {
-    static async getAll(limit = 10, page = 1) {
-            const postsRes = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+    static async getAll(limit = 10, page = 1, ) {
+            let postsRes = await url
+                .get('/posts', {
+                    params: {
+                        _limit: limit,
+                        _page: page
+                    }
+                })
+
+           /* const postsRes = await axios.get(`${url}`, {
                 params: {
                     _limit: limit,
-                    _page: page
+                    _page: page,
+                    _mail: mail
                 }
-            })
+            })*/
           /*  const usersRes = await axios.get('https://jsonplaceholder.typicode.com/users', {
             })
             const commentsRes = await  axios.get('https://jsonplaceholder.typicode.com/comments',{
@@ -43,7 +56,13 @@ export default class PostService {
                     }
                 }
             }*/
-            console.log(postsRes)
+
             return postsRes;
+    }
+
+    static async getAllUsers(id) {
+        const usersRes = await url
+            .get(`/posts?userId=${id}`)
+        return usersRes;
     }
 }
