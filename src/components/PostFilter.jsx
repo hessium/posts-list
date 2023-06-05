@@ -5,7 +5,7 @@ import MySelect from "./Ui/select/MySelect";
 
 const PostFilter = ({filter, setFilter}) => {
     return (
-        <div>
+        <div className='filter'>
             <InputGroup className="mb-3">
                 <InputGroup.Text
                 >

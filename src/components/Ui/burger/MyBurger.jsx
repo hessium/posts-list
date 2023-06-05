@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { CiMenuBurger } from 'react-icons/ci';
-
+import { Link } from 'react-router-dom';
 
 const MyBurger = () => {
     const [show, setShow] = useState(false);
@@ -20,8 +20,8 @@ const MyBurger = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className='header-list'>
-                        <a href="#">Обо мне</a>
-                        <a href="#">Список постов</a>
+                        <Link to="/about">Обо мне</Link>
+                        <Link to="/">Посты</Link>
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>

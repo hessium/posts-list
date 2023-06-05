@@ -4,6 +4,8 @@ import Accordion from 'react-bootstrap/Accordion';
 const  PostItem = ({post }) =>  {
 
 
+
+
     return (
           <div key={post.id} className="col-md-12">
               <div className="media g-mb-30 media-comment">
