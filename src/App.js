@@ -3,11 +3,11 @@ import './App.css';
 import {
     BrowserRouter,
     Routes,
-    Route,
-    Switch
+    Route
 } from 'react-router-dom';
 import About from "./pages/About";
 import Posts from "./pages/Posts";
+import User from "./pages/User";
 import Header from "./components/Ui/header/Header";
 
 function App() {
@@ -16,8 +16,9 @@ function App() {
             <BrowserRouter>
                 <Header/>
                   <Routes>
-                      <Route path="/about" element={<About/> } />
-                      <Route path="/" element={<Posts/> } />
+                      <Route path="/about" element={<About/>} />
+                      <Route path="/" element={<Posts/>} />
+                      <Route path="/user" element={<User/>} />
                   </Routes>
             </BrowserRouter>
         </div>
