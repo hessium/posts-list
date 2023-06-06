@@ -62,7 +62,7 @@ export default class PostService {
 
     static async getComments(post_id) {
         const usersRes = await url
-            .get(`/postt/${post_id}/comments`)
+            .get(`/post/${post_id}/comments`)
         return usersRes;
     }
 }

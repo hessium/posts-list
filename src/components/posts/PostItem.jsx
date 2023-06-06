@@ -1,13 +1,17 @@
-import React, {useEffect} from 'react';
+import React, { useState} from 'react';
 import Accordion from 'react-bootstrap/Accordion';
+import axios from "axios";
 
-const  PostItem = ({post }) =>  {
-
-
-
-
+const  PostItem = ({post, id}) =>  {
+    const [comments, setComments] = useState([]);
+ 
+    async function fetchComments(id){
+        const res = await axios.get(`https://jsonplaceholder.typicode.com/post/${id}/comments`)
+        setComments(res.data)
+        console.log(res.data)
+    }
     return (
-          <div key={post.id} className="col-md-12">
+          <div   key={post.id} className="col-md-12">
               <div className="media g-mb-30 media-comment">
                   <a href="#">
                       <img className="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
@@ -23,8 +27,19 @@ const  PostItem = ({post }) =>  {
                           <p>{post.body}</p>
                           <Accordion >
                               <Accordion.Item eventKey="0">
-                                  <Accordion.Header >Comments</Accordion.Header>
-
+                                  <Accordion.Header  onClick={() => fetchComments(id)}>Comments</Accordion.Header>
+                                  {
+                                      comments.map((com) =>
+                                          <Accordion.Body key={com.id}>
+                                              <h4>
+                                                  {com.email}
+                                              </h4>
+                                             <p>
+                                                 {com.body}
+                                             </p>
+                                          </Accordion.Body>
+                                      )
+                                  }
                               </Accordion.Item>
                           </Accordion>
                       </div>
