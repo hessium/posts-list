@@ -24,7 +24,6 @@ export default class PostService {
     
     static async getUser(user_id) {
         const usersRes = await url
-            .get(`/users/${user_id}`)
         return usersRes;
     }
     
