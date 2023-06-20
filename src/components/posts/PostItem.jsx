@@ -1,19 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Accordion from 'react-bootstrap/Accordion';
 import {Link} from "react-router-dom";
-import PostService from "../../Api/PostService";
-import {useFetching} from "../../hooks/useFetching";
-import Spinner from "react-bootstrap/Spinner";
-import PostComments from "./PostComments";
 
-const  PostItem = ({post, userId, id}) =>  {
-    const [comments, setComments] = useState([]);
-    
-    const [fetchComments, isCommentsLoading, commentsError] = useFetching(async () => {
-        const response = await PostService.getComments(id);
-        setComments(response.data);
-    })
-    
+const  PostItem = ({post}) =>  {
     return (
           <div key={post.id} className="col-md-12">
               <div className="media g-mb-30 media-comment">
@@ -29,18 +17,7 @@ const  PostItem = ({post, userId, id}) =>  {
                           </div>
                           <h4>{post.title}</h4>
                           <p>{post.body}</p>
-                          <Accordion >
-                              <Accordion.Item eventKey="0">
-                                  <Accordion.Header  onClick={() => fetchComments(id)}>Comments</Accordion.Header>
-                                 <div className='accordion-wrapper'>
-                                     {commentsError && <h1>Произошла ошибка ${commentsError}</h1>}
-                                     {isCommentsLoading
-                                         ? <Spinner className='spinner' animation="border" variant="primary" />
-                                         : <PostComments comments={comments} />
-                                     }
-                                 </div>
-                              </Accordion.Item>
-                          </Accordion>
+                        
                       </div>
                   <div>
 

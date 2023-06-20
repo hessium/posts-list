@@ -1,17 +1,6 @@
 import React, {useState} from 'react';
 import Accordion from "react-bootstrap/Accordion";
-import PostService from "../Api/PostService";
-import {useFetching} from "../hooks/useFetching";
 const User = ({userId}) => {
-    
-    const [users, setUsers] = useState([]);
-    
-    const [fetchUser, isPostsLoading, postError] = useFetching(async () => {
-        const response = await PostService.getUser(userId);
-        setUsers(response.data);
-        console.log(response.data)
-    })
-    
     return (
         <div  className="col-md-8">
             <div className="media g-mb-30 media-comment">
@@ -26,7 +15,6 @@ const User = ({userId}) => {
                         <Accordion.Item eventKey="0">
                             <Accordion.Header  >Posts</Accordion.Header>
                             <Accordion.Body >
-                             NFnfnf
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>
