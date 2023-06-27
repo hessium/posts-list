@@ -1,11 +1,12 @@
-import {combineReducers} from "redux";
-
-const posts = (state = [], action) => {
-	return state;
-}
+import { combineReducers } from 'redux';
+import postsReducer from "./posts";
+import news from "./news";
+import comments from "./comments";
 
 const reducer = combineReducers({
-	posts,
+    postsReducer,
+    news,
+    comments
 });
 
-export  default reducer;
+export default reducer;

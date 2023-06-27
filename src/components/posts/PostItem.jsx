@@ -1,8 +1,17 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getComments} from "../../redux/actions/actionCreator";
 
 const  PostItem = ({post}) =>  {
+    const comments = useSelector(store => store?.comments?.posts  || []);
+    const dispatch = useDispatch();
+
+    const handlePostComments = () => {
+        dispatch(getComments())
+    }
+
     return (
           <div key={post.id} className="col-md-12">
               <div className="media g-mb-30 media-comment">
@@ -20,7 +29,7 @@ const  PostItem = ({post}) =>  {
                           <p>{post.body}</p>
                           <Accordion >
                               <Accordion.Item eventKey="0">
-                                  <Accordion.Header >Comments</Accordion.Header>
+                                  <Accordion.Header  onClick={(e) => {handlePostComments()}}>Comments</Accordion.Header>
                               </Accordion.Item>
                           </Accordion>
                       </div>
