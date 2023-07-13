@@ -1,18 +1,30 @@
-import { SET_POSTS } from "../constants";
+import {SET_COMMENTS, SET_POSTS, SET_USER} from "../constants";
 
 const initialState = {
-   allPosts: [],
+    posts: [],
+    comments: [],
+    user: [],
 };
 
-const postsReducer = (state = initialState, action) => {
-    switch (action.type) {
+const posts = (state = initialState, {type, payload}) => {
+    switch (type) {
         case SET_POSTS:
             return {
                 ...state,
-                allPosts: [...state.allPosts,  action.payload],
+                posts: [...state.posts, ...payload],
+            };
+        case SET_COMMENTS:
+            return {
+                ...state,
+                comments: payload ,
+            };
+        case SET_USER:
+            return {
+                ...state,
+                user: payload ,
             };
         default: return state;
     }
 };
 
-export default postsReducer;
+export default posts;

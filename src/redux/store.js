@@ -3,7 +3,11 @@ import createSagaMiddleware from 'redux-saga';
 import reducer from './reducers';
 import rootSaga from './sagas';
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+    context: {
+
+    }
+});
 
 const composeEnhancers =
     typeof window === 'object' &&
