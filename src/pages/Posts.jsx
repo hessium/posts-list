@@ -1,30 +1,29 @@
 import PostList from "../components/posts/PostList";
 import {useDispatch, useSelector} from "react-redux";
-import {getPosts} from "../redux/actions/actionCreator";
-import React, {useEffect, useState} from "react";
-import Spinner from "react-bootstrap/Spinner";
+import React, {useEffect} from "react";
+import {getPosts} from "../store/posts/actions";
+import {getUsers} from "../store/users/actions";
 
 function Posts() {
-    const posts = useSelector(store => store?.posts?.posts  || []);
-    const [isLoader, setIsLoader] = useState(true)
-    const dispatch = useDispatch();
+    const { posts, loadingPosts } = useSelector((state) => state.PostReducer);
 
-    const  loaderDestroy = () => {
-        setTimeout(()=> {
-           setIsLoader(false)
-        }, 2000)
-    }
+    let dispatch = useDispatch();
 
-    useEffect(()=> {
-        dispatch(getPosts())
-        loaderDestroy()
-    }, [dispatch])
+    useEffect(() => {
+        dispatch(getPosts());
+    }, []);
+
 
     return (
         <div className="App">
-            {isLoader
-            ? <Spinner animation="border" variant="primary" />
-            : <PostList posts={posts}/>}
+            {
+                loadingPosts ?
+                    <div className="text-center">
+                        <div className="spinner-border" role="status">
+                        </div>
+                    </div>
+                    : <PostList posts={posts} />
+            }
         </div>
 
     );

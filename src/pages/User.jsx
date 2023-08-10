@@ -1,34 +1,24 @@
-import React from 'react';
-import Accordion from "react-bootstrap/Accordion";
-import {useSelector} from "react-redux";
+import {useEffect} from 'react';
+import { Container } from "react-bootstrap";
+import UserDetails from "../components/posts/UserDetails";
+import {useDispatch} from "react-redux";
+import {useParams} from "react-router-dom";
+import {getUserDetails} from "../store/users/actions";
+
 
 const User = () => {
-    const user = useSelector(store => store?.posts?.user || [])
+    let params = useParams();
+    let dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getUserDetails(params.user));
+    }, [params.user]);
+
 
     return (
-        <div  className="col-md-8">
-            <div className="media g-mb-30 media-comment">
-                <img className="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
-                     src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description" />
-                <div className="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                    <div className="g-mb-15">
-                        <h5 className="h5 g-color-gray-dark-v1 mb-0">{user.name}</h5>
-                    </div>
-                    <p>{user.body}</p>
-                    <Accordion >
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Posts</Accordion.Header>
-                            <Accordion.Body>
-                                <p>
-
-                                </p>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
-                </div>
-              
-            </div>
-        </div>
+        <Container className="single-post">
+            <h1> FD</h1>
+            <UserDetails />
+        </Container>
     );
 };
 

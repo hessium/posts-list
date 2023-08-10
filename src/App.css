@@ -110,3 +110,9 @@ h1, h2 {
 .page--current {
     border: 2px solid #fd7e14;
 }
+
+.loader {
+    position: absolute;
+    left: 40%;
+    top: 50%;
+}
