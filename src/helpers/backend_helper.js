@@ -9,12 +9,3 @@ export const getPostDetails = (id) =>
             id: id,
         },
     });
-
-export const getUsers = () => get(url.GET_USERS);
-
-export const getUserDetails = (user) =>
-    get(url.GET_USER_DETAILS, {
-        params: {
-            user: user,
-        },
-    });

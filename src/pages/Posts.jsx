@@ -2,7 +2,6 @@ import PostList from "../components/posts/PostList";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {getPosts} from "../store/posts/actions";
-import {getUsers} from "../store/users/actions";
 
 function Posts() {
     const { posts, loadingPosts } = useSelector((state) => state.PostReducer);

@@ -1,6 +1,8 @@
 import React from 'react';
 import PostItem from "./PostItem";
 import axios from "axios";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 const  PostList = ({posts}) =>  {
 
     async function getsPosts() {
@@ -23,7 +25,12 @@ const  PostList = ({posts}) =>  {
     return (
         <div className='container'>
             <div className="row">
-
+                <div className='filter'>
+                    <DropdownButton id="dropdown-basic-button" title="Сортировка">
+                        <Dropdown.Item >По тексту</Dropdown.Item>
+                        <Dropdown.Item >По названию</Dropdown.Item>
+                    </DropdownButton>
+                </div>
                 {posts.map((post, index) =>
                     <PostItem post={post} key={index} />
                 )}

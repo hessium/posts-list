@@ -15,7 +15,7 @@ const  PostDetails = () => {
                     </div>
                 </div>
             ) : (
-                <Row className="posts">
+                <Row className="posts-detail">
                     <Col lg={8} md={10} sm={12}>
                         <h1>{post.title}</h1>
                         <div>{post.body}</div>

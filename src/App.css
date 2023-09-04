@@ -116,3 +116,7 @@ h1, h2 {
     left: 40%;
     top: 50%;
 }
+
+.posts-detail h1{
+    text-align: left;
+}
