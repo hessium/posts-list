@@ -1,12 +1,13 @@
 import { takeLatest, put, call } from "redux-saga/effects";
 
-import { GET_POSTS, GET_POST_DETAILS} from "./actionTypes";
+import {GET_POSTS, GET_POST_DETAILS,} from "./actionTypes";
 
 import {
     getPostsSuccess,
     getPostsFail,
     getPostDetailsSuccess,
     getPostDetailsFail,
+
 } from "./actions";
 
 import { getPosts, getPostDetails } from "../../helpers/backend_helper";
@@ -19,6 +20,7 @@ function* onGetPosts() {
         yield put(getPostsFail(error.response));
     }
 }
+
 
 function* onGetPostDetails({ payload: id }) {
     try {

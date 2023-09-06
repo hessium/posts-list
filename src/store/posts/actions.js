@@ -47,4 +47,3 @@ export const getPostDetailsFail = (error) => {
         payload: error,
     };
 };
-

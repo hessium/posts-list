@@ -5,11 +5,14 @@ import {
     GET_POST_DETAILS,
     GET_POST_DETAILS_SUCCESS,
     GET_POST_DETAILS_FAIL,
+
 } from "./actionTypes";
 
 const initialState = {
     posts: [],
     post: {},
+    comments: [],
+    loadingComments:false,
     loadingPosts: false,
     loadingPostDetails: false,
     error: {

@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PostItem from "./PostItem";
-import axios from "axios";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import MySelect from "../Ui/select/MySelect";
 const  PostList = ({posts}) =>  {
 
-    async function getsPosts() {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        console.log(response.data)
-        return response
-    }
+    const [selectedSort, setSelectedSort] = useState('')
 
+
+    const sortPosts = (sort) => {
+        setSelectedSort(sort)
+        const postList = posts.sort((a, b) => a[sort].localeCompare(b[sort]))
+        return postList;
+    }
 
     if(!posts.length ) {
         return (
@@ -18,18 +18,26 @@ const  PostList = ({posts}) =>  {
                 <h1 className="title">
                     Постов нет
                 </h1>
-                <button onClick={getsPosts}>Rkbr</button>
             </div>
         )
     }
+
+
+
     return (
         <div className='container'>
             <div className="row">
-                <div className='filter'>
-                    <DropdownButton id="dropdown-basic-button" title="Сортировка">
-                        <Dropdown.Item >По тексту</Dropdown.Item>
-                        <Dropdown.Item >По названию</Dropdown.Item>
-                    </DropdownButton>
+                <div className='sort'>
+                    <MySelect
+                        value={selectedSort}
+                        onChange={sortPosts}
+                        defaultValue="Сортировка"
+                        options={[
+                            {value: "title", name:"По названию"},
+                            {value: "body", name:"По тексту"}
+                        ]}
+                    >
+                    </MySelect>
                 </div>
                 {posts.map((post, index) =>
                     <PostItem post={post} key={index} />
